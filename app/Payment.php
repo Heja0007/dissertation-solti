@@ -9,12 +9,12 @@ class Payment extends Model
     protected $table = 'payments';
 
     protected $fillable = [
-        'payer_id', 'amount', 'prn', 'unique_id', 'payment_type', 'status', 'verification_code','unique_verifier_code'
+        'amount', 'name', 'email', 'currency', 'booking_id', 'status', 'prn'
     ];
 
-    public function payer()
+    public function booking()
     {
-        return $this->belongsTo('App\BookingDetails', 'payer_id');
+        return $this->belongsTo('App\BookingDetails', 'booking_id');
     }
-}
 
+}

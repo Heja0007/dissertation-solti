@@ -17,7 +17,6 @@ class   CreateBookingDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->unsignedBigInteger('routes_id');
-            $table->foreign('routes_id')->references('id')->on('trekking_routes');
             $table->unsignedInteger('peoples')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

@@ -3,83 +3,59 @@
 namespace App\Http\Controllers;
 
 use App\Payment;
+use App\Repositories\PaymentsRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
+use Omnipay\Omnipay;
 
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public $model;
+
+    public function __construct(PaymentsRepository $model)
+    {
+        $this->model = $model;
+    }
+
     public function index()
     {
-        //
+        return view('payment');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function charge(Request $request)
     {
-        //
-    }
+        $data = $request->all();
+        if ($data['stripeToken']) {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $gateway = Omnipay::create('Stripe');
+            $gateway->setApiKey(env('STRIPE_SECRET_KEY'));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Payment $payment)
-    {
-        //
-    }
+            $token = $request->input('stripeToken');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Payment $payment)
-    {
-        //
+            $response = $gateway->purchase([
+                'amount' => $data['amount'],
+                'currency' => env('STRIPE_CURRENCY'),
+                'token' => $token,
+            ])->send();
+            if ($response->isSuccessful()) {
+                // payment was successful: insert transaction data into the database
+                $arr_payment_data = $response->getData();
+                $payment = [
+                    'booking_id' => $data['booking_id'],
+                    'prn' => Carbon::now()->format('Ymdhs'),
+                    'email' => $data['email'],
+                    'amount' => $arr_payment_data['amount'],
+                    'currency' => env('STRIPE_CURRENCY'),
+                    'status' => $arr_payment_data['status']
+                ];
+                $as = $this->model->store($payment);
+                $as = Payment::where('id', $as->id)->with('booking')->first();
+                return view('front.checkout')->with(['message' => 'Payment is successful', 'payment' => $as]);
+            } else {
+                return view('front.payment-failure')->with('message', 'Payment failed :' . $response->getMessage());
+            }
+        }
     }
 }

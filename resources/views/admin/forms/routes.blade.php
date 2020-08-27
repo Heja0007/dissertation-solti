@@ -22,7 +22,7 @@
                 <div class="form-group row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            {{Form::text('cost' , $treks->cost ?? old('cost') , ['class' => 'form-control form-control-user' , 'required' => 'required' ,'placeholder' => 'Cost'])}}
+                            {{Form::number('cost' , $treks->cost ?? old('cost') , ['class' => 'form-control form-control-user' , 'required' => 'required' ,'placeholder' => 'Cost'])}}
                         </div>
                     </div>
                     <div class=" col-sm-6">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        {{Form::text('maximum_altitude' , $treks->maximum_altitude ?? old('maximum_altitude') , ['class' => 'form-control form-control-user' , 'required' => 'required', 'placeholder'=>'Maximum Altitude' ])}}
+                        {{Form::number('maximum_altitude' , $treks->maximum_altitude ?? old('maximum_altitude') , ['class' => 'form-control form-control-user' , 'required' => 'required', 'placeholder'=>'Maximum Altitude' ])}}
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         {{Form::select('status' ,[

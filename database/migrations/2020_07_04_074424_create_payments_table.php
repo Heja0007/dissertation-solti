@@ -15,13 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('payer_id');
-            $table->foreign('payer_id')->references('id')->on('booking_details');
             $table->string('amount');
-            $table->string('prn')->unique();
-            $table->string('unique_id')->unique();
-            $table->string('payment_type')->nullable();
+            $table->string('prn');
             $table->string('status');
+            $table->string('email');
+            $table->string('currency');
+            $table->string('booking_id');
             $table->timestamps();
         });
     }

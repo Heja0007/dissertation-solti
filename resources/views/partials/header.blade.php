@@ -8,7 +8,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="{{asset('img/logo.png')}}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -25,17 +25,8 @@
                         <div class="col-xl-4 col-lg-4 d-none d-lg-block">
                             <div class="social_wrap d-flex align-items-center justify-content-end">
                                 <div class="number">
-                                    <p> <i class="fa fa-phone"></i> (Some Phone Numbers)</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="seach_icon">
-                            <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </div>
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
                     </div>
                 </div>

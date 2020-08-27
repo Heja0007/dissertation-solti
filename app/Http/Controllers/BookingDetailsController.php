@@ -30,8 +30,8 @@ class BookingDetailsController extends Controller
      */
     public function index()
     {
-        $bookings = BookingDetails::all();
-        return view('amin.bookings.list')->with('data', $bookings);
+        $bookings = BookingDetails::with(['payment','trek'])->get();
+        return view('admin.bookings.list')->with('datas', $bookings);
     }
 
     /**
@@ -51,31 +51,15 @@ class BookingDetailsController extends Controller
         $data['cost'] = $trek->cost * $data['peoples'];
         $data['routes_id'] = $trek->id;
         $book = $this->model->store($data);
-        $payment = $this->payments($book);
-        return redirect()->route('front.payment.checkout', ['id' => $payment->prn]);
+        return redirect()->route('front.payment.checkout', ['id' => $book->id]);
 //        return view('front.payment')->with(['data' => $payment, 'trek' => $trek]);
     }
 
-    public function payments($data)
-    {
-        $prn = Carbon::now()->format('Y-m-d-h-s');
-        $unique_code = Carbon::now()->format('YmdHisu');
-        $prn = str_ireplace('-', '', $prn);
-        $payment = [
-            'amount' => $data['cost'],
-            'prn' => $prn,
-            'payer_id' => $data['id'],
-            'status' => 0,
-            'unique_id' => $data['id'] + 10000000000,
-        ];
-        $payment = $this->payment->store($payment);
-        return $payment;
-    }
 
     public function checkout($id)
     {
-        $payment = Payment::where('prn', $id)->first();
-        return view('front.payment')->with(['data' => $payment]);
+        $book = BookingDetails::where('id', $id)->first();
+        return view('front.payment')->with(['data' => $book]);
 
     }
 

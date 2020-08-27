@@ -43,7 +43,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'as' => 'uploads.destroy',
         'uses' => 'UploadController@destroy'
     ]);
+
+    Route::get('/bookings', [
+        'as' => 'bookings.index',
+        'uses' => 'BookingDetailsController@index'
+    ]);
+
 });
+
+Route::post('/charge', [
+    'as' => 'charge',
+    'uses' => 'PaymentController@charge'
+]);
 
 
 Route::get('/front/trek/{id}', [

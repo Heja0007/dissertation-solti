@@ -19,4 +19,5 @@ class TrekkingRoute extends Model
         return $query->where('status', 'Active');
     }
 
+
 }

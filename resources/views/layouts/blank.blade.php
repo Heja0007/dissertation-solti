@@ -31,7 +31,7 @@
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/home">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -46,7 +46,11 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Trekking Routes</span></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.bookings.index')}}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Booking list</span></a>
+        </li>
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>

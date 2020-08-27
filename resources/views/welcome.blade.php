@@ -86,7 +86,7 @@
                                 <span>Oct 12, 2019</span>
                             </div>
                             <a href="#">
-                                <h3>{{$guide->expertise}}</h3>
+                                <h3>{{$guide->name}}</h3>
                             </a>
                         </div>
                     </div>

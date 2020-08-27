@@ -21,19 +21,19 @@
                                     <th class="sorting_desc" tabindex="0" aria-controls="dataTable"
                                         rowspan="2" colspan="1"
                                         aria-label="Name: activate to sort column ascending"
-                                        style="width: 100px;" aria-sort="descending">Name
+                                        style="width: 100px;" aria-sort="descending">Trek Title
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="" aria-label="Position: activate to sort column ascending"
-                                        style="width: 100px;">Phone
+                                        style="width: 100px;">Cost per person
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1" aria-label="Office: activate to sort column ascending"
-                                        style="width: 100px;">Expertise
+                                        style="width: 100px;">Duration
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1" aria-label="Age: activate to sort column ascending"
-                                        style="width: 100px;">Email
+                                        style="width: 100px;">Difficulty
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1"
@@ -72,15 +72,15 @@
                                                         Edit
                                                     </button>
                                                 </a>
-                                                {{ Form::open(['url' => route('admin.treks.destroy',$trek->id), 'method' => 'delete','class'=>'form-delete  pull-left']) }}
-                                                <button type="submit" class="btn btn-delete"><i class="fa fa-trash"></i>
-                                                </button>
-                                                {{Form::close() }}
+{{--                                                {{ Form::open(['url' => route('admin.treks.destroy',$trek->id), 'method' => 'delete','class'=>'form-delete  pull-left']) }}--}}
+{{--                                                <button type="submit" class="btn btn-delete"><i class="fa fa-trash"></i>--}}
+{{--                                                </button>--}}
+{{--                                                {{Form::close() }}--}}
                                             </div>
                                         </td>
                                     </tr>
                                 @empty
-                                    <span>No Guides data</span>
+                                    <span>No Trekking Route data</span>
                                 @endforelse
                                 </tbody>
                             </table>

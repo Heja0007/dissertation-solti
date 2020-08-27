@@ -9,12 +9,17 @@ class BookingDetails extends Model
     protected $table = 'booking_details';
 
     protected $fillable = [
-        'name', 'routes_id', 'total people', 'email', 'phone', 'prefered_date', 'status' , 'cost'
+        'name', 'routes_id', 'peoples', 'email', 'phone', 'prefered_date', 'status', 'cost'
     ];
 
-    public function trekRoutes()
+    public function payment()
     {
-        $this->hasOne('App\TrekkingRoute', 'routes_id');
+        return $this->hasOne('App\Payment', 'booking_id');
+    }
+
+    public function trek()
+    {
+        return $this->belongsTo('App\TrekkingRoute', 'routes_id');
     }
 
 }
