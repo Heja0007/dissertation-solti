@@ -19,12 +19,12 @@
                                 <thead>
                                 <tr role="row">
                                     <th class="sorting_desc" tabindex="0" aria-controls="dataTable"
-                                        rowspan="2" colspan="1"
+                                        rowspan="1" colspan="1"
                                         aria-label="Name: activate to sort column ascending"
                                         style="width: 100px;" aria-sort="descending">Trek Title
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                        colspan="" aria-label="Position: activate to sort column ascending"
+                                        colspan="1" aria-label="Position: activate to sort column ascending"
                                         style="width: 100px;">Cost per person
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"

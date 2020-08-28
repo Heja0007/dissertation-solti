@@ -110,10 +110,10 @@ class TrekkingRouteController extends Controller
             $treks = $treks->where('destination', $data['destination']);
         }
         if (isset($data['cost'])) {
-            $treks = $treks->orWhere('cost', '<', $data['cost']);
+            $treks = $treks->where('cost', '<=', $data['cost']);
         }
         if (isset($data['difficulty'])) {
-            $treks = $treks->orWhere('difficulty', $data['difficulty']);
+            $treks = $treks->where('difficulty', $data['difficulty']);
         }
 
         $treks = $treks->paginate(6);
@@ -129,7 +129,7 @@ class TrekkingRouteController extends Controller
 
     public function allRoutes()
     {
-        $treks = TrekkingRoute::active()->paginate(3);
+        $treks = TrekkingRoute::active()->paginate(6);
         return view('front.list')->with('treks', $treks);
     }
 

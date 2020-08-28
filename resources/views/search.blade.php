@@ -16,8 +16,8 @@
                         {{ Form::select('cost',
                                               [
                                                  '' => 'Select Budget',
-                                                 '10000' => 'Less than us 100000',
-                                                 '200000' => 'Less than us 200000',
+                                                 '10000' => 'Less than us 10000',
+                                                 '20000' => 'Less than us 20000',
                                                  '100000' => 'More than us 200000',
                                              ]
                                              , $data->cost ?? old('cost'), ['class'=>'form-control'])
